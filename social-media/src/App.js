@@ -5,10 +5,10 @@ import {v4 as uuidv4} from 'uuid';
 const ToDo = (props) => {
 
   return(
-    <div className='w-[70%] mx-auto shadow-[0_2px_10px_2px_rgba(0,0,0,0.5)] p-4 rounded-lg '>
+    <div className='w-[80%] mx-auto shadow-[0_2px_10px_2px_rgba(0,0,0,0.5)] p-4 rounded-lg '>
       <div className='flex justify-between mb-4'>
         <h2 className='font-bold text-lg'>{props.name}</h2>
-        <h2>{props.date}</h2>
+        <h2>{props.createdAt}</h2>
       </div>
       <p className='text-justify'>{props.text}</p>
     </div>
@@ -22,15 +22,13 @@ const App = () => {
   let [text, setText] = useState("");
 
   let handleAdd = () => {
-    let day = new Date().getDay()
-    let month = new Date().getMonth()
-    let year = new Date().getFullYear()
-    let date = `${day}/${month}/${year}`
+    let date = new Date()
+    let createdAt = `${date.getDay()}/${date.getMonth()}/${date.getFullYear()} | ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
 
     let tmp = {};
     tmp["name"] = name;
     tmp["text"] = text;
-    tmp["date"] = date;
+    tmp["createdAt"] = createdAt;
     tmp["id"] = uuidv4();
     console.log(tmp.date)
     setData([...data, tmp]);
@@ -68,7 +66,7 @@ const App = () => {
 
       <div className="flex flex-col gap-4 mt-8">
         {data.map((item) => (
-          <ToDo key={item.id} name={item.name} text={item.text} date={item.date} />
+          <ToDo key={item.id} name={item.name} text={item.text} createdAt={item.createdAt} />
         ))}
       </div>
 
