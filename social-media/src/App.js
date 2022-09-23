@@ -23,7 +23,7 @@ const App = () => {
 
   let handleAdd = () => {
     let date = new Date()
-    let createdAt = `${date.getDay()}/${date.getMonth()}/${date.getFullYear()} | ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
+    let createdAt = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()} | ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
 
     let tmp = {};
     tmp["name"] = name;
